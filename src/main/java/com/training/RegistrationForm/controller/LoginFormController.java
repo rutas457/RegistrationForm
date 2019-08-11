@@ -1,6 +1,7 @@
 package com.training.RegistrationForm.controller;
 
 import com.training.RegistrationForm.entity.User;
+import com.training.RegistrationForm.entity.UserDB;
 import com.training.RegistrationForm.service.LoginFormService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +28,18 @@ public class LoginFormController {
 
     @RequestMapping(value="/", method=RequestMethod.POST)
     public String customerSubmit(@RequestParam(value="login") String login, @RequestParam(value="password") String password) {
-        User user = new User();
-        user.setLogin(login);
-        user.setPassword(password);
-        String info = user.getLogin() + " " + user.getPassword();
+        UserDB.user.setLogin(login);
+        UserDB.user.setPassword(password);
+        String info = UserDB.user.getLogin() + " " + UserDB.user.getPassword();
         log.info(info);
 
+        return "redirect:/result";
+    }
+
+    @RequestMapping(value="/result", method=RequestMethod.GET)
+    public String getLoginResultPage(Model model) {
+        model.addAttribute("login", UserDB.user.getLogin());
+        model.addAttribute("password", UserDB.user.getPassword());
         return "result";
     }
 }
