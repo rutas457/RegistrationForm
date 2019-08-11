@@ -1,6 +1,5 @@
 package com.training.RegistrationForm.controller;
 
-import com.training.RegistrationForm.entity.User;
 import com.training.RegistrationForm.entity.UserDB;
 import com.training.RegistrationForm.service.LoginFormService;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +22,7 @@ public class LoginFormController {
 
     @GetMapping(value="/")
     public String getLoginPage(Model model) {
-        return "reg_form";
+        return "login_form";
     }
 
     @RequestMapping(value="/", method=RequestMethod.POST)
