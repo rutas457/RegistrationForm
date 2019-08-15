@@ -26,7 +26,7 @@ public class LoginFormController {
     }
 
     @RequestMapping(value="/", method=RequestMethod.POST)
-    public String customerSubmit(@RequestParam(value="login") String login, @RequestParam(value="password") String password) {
+    public String userSubmit(@RequestParam(value="login") String login, @RequestParam(value="password") String password) {
         UserDB.user.setLogin(login);
         UserDB.user.setPassword(password);
         String info = UserDB.user.getLogin() + " " + UserDB.user.getPassword();

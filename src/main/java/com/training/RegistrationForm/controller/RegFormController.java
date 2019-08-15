@@ -27,4 +27,17 @@ public class RegFormController {
     public String getRegistrationPage(Model model) {
         return "reg_form";
     }
+
+    @RequestMapping(value="/reg", method=RequestMethod.POST)
+    public String user(@RequestParam(value="name") String name, @RequestParam(value="password") String password,
+                       @RequestParam(value="email") String email) {
+        UserDB.user.setLogin(name);
+        UserDB.user.setPassword(password);
+        UserDB.user.setPassword(email);
+        String info = UserDB.user.getLogin() + " " + UserDB.user.getPassword();
+        log.info(info);
+
+        return "redirect:/";
+    }
+
 }
