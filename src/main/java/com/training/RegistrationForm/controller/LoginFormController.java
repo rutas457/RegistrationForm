@@ -1,12 +1,19 @@
 package com.training.RegistrationForm.controller;
 
-import com.training.RegistrationForm.entity.UserDB;
+import com.training.RegistrationForm.dto.UserDTO;
+import com.training.RegistrationForm.dto.UsersDTO;
+import com.training.RegistrationForm.entity.User;
 import com.training.RegistrationForm.service.LoginFormService;
+import com.training.RegistrationForm.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Slf4j
 @Controller
@@ -15,6 +22,8 @@ public class LoginFormController {
 
     private LoginFormService loginFormService;
 
+    @Autowired
+    private UserService userService;
     @Autowired
     public LoginFormController(LoginFormService loginFormService) {
         this.loginFormService = loginFormService;
@@ -27,18 +36,16 @@ public class LoginFormController {
 
     @RequestMapping(value="/", method=RequestMethod.POST)
     public String userSubmit(@RequestParam(value="login") String login, @RequestParam(value="password") String password) {
-        UserDB.user.setLogin(login);
-        UserDB.user.setPassword(password);
-        String info = UserDB.user.getLogin() + " " + UserDB.user.getPassword();
-        log.info(info);
 
         return "redirect:/result";
     }
 
     @RequestMapping(value="/result", method=RequestMethod.GET)
     public String getLoginResultPage(Model model) {
-        model.addAttribute("login", UserDB.user.getLogin());
-        model.addAttribute("password", UserDB.user.getPassword());
-        return "result";
+        ArrayList<User> users = new ArrayList<User>(userService.getAllUsers().getUsers());
+        model.addAttribute("users", users);
+        return "all";
     }
+
+
 }

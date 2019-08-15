@@ -7,7 +7,7 @@
 <div class="login-page">
     <div class="form">
         <form action="#" method="post" >
-            <input type="text" name="login" placeholder="username"/>
+            <input type="text" name="login" placeholder="email"/>
             <input type="password" name="password" placeholder="password"/>
             <button type="submit">login</button>
             <p class="message"> <a href="http://localhost:8080/reg">Create an account</a></p>

@@ -1,5 +1,5 @@
 package com.training.RegistrationForm.entity;
 
-public enum Status {
+public enum Role {
     ADMIN, USER
 }
