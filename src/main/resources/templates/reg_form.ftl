@@ -2,16 +2,27 @@
 <style>
     @import "style_reg.css";
 </style>
+<#import "/spring.ftl" as spring />
 
 
 <div class="login-page">
     <div class="form">
+
         <form class="login-form" action="#" method="post">
-            <input type="text" name="name" placeholder="full name"/>
-            <input type="text" name="email" placeholder="email address"/>
-            <input type="password" name="password" placeholder="password"/>
-            <button>create</button>
-            <p class="message">Already registered? <a href="javascript:history.back()">Sign In</a></p>
+            Full Name:<br>
+            <@spring.formInput "user.fullName"/>
+            <@spring.showErrors "<br>"/>
+            <br><br>
+            Email:<br>
+            <@spring.formInput "user.email" />
+            <@spring.showErrors "<br>"/>
+            <br><br>
+            Password:<br>
+            <@spring.formInput "user.password"/>
+            <@spring.showErrors "<br>"/>
+            <br><br>
+            <button type="submit">create</button>
+            <p class="message">Already registered? <a href="http://localhost:8080/">Sign In</a></p>
         </form>
     </div>
 </div>

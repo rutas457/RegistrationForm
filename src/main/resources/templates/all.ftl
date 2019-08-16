@@ -26,10 +26,10 @@
     }</style>
 <table>
         <tr>
-            <th>ID</th>
-            <th>EMAIL</th>
-            <th>PASSWORD</th>
-            <th>ROLE</th>
+            <th bgcolor=#00bf80>ID</th>
+            <th bgcolor=#00bf80>EMAIL</th>
+            <th bgcolor=#00bf80>PASSWORD</th>
+            <th bgcolor=#00bf80>ROLE</th>
         </tr>
         <#list users as item>
             <tr>

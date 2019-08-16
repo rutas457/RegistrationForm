@@ -17,12 +17,15 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    public Boolean isValid(User userDTO){
+        return userRepository.findByEmail(userDTO.getEmail()) == null;
+    }
     public UsersDTO getAllUsers() {
         //TODO checking for an empty user list
         return new UsersDTO(userRepository.findAll());
     }
 
-    public User findByUserLogin (UserDTO userDTO){
+    public User findByUserEmail (UserDTO userDTO){
         //TODO check for user availability. password check
         return userRepository.findByEmail(userDTO.getEmail());
     }

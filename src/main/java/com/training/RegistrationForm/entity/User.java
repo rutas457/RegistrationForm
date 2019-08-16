@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Getter
@@ -14,7 +15,7 @@ import java.io.Serializable;
 @Builder
 @ToString
 @Entity
-@Table(name = "Users")
+@Table(name = "Users", uniqueConstraints={@UniqueConstraint(columnNames={"EMAIL"})})
 public class User implements Serializable {
 
     @Id
@@ -25,17 +26,16 @@ public class User implements Serializable {
     @Column(name = "FULL_NAME")
     private String fullName;
 
-    @Column(name = "EMAIL", unique = true)
-    @Email
+    @Column(name = "EMAIL")
+    @NotNull
     private String email;
 
-    @Column(name = "PHONE_NUMBER")
-    private String phoneNumber;
-
     @Column(name = "PASSWORD")
+    @NotNull
     private String password;
 
     @Column(name = "ROLE")
+    @NotNull
     Role role;
 
 }
